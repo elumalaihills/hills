@@ -1,2 +1,0 @@
-# hills
-Happy new year 🎊
