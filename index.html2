@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pharm D Riddle Quiz</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef2f3;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    button {
+      background: #2980b9;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🧠 Pharm D Clinical Riddle Quiz 💊</h2>
+
+  <form id="quizForm">
+
+    <label><b>Name:</b></label><br>
+    <input type="text" name="entry.NAME" required><br><br>
+
+    <p><b>1. I increase INR with warfarin. Who am I?</b></p>
+    <input type="radio" name="q1" value="Metronidazole" required> Metronidazole<br>
+    <input type="radio" name="q1" value="Paracetamol"> Paracetamol<br>
+    <input type="radio" name="q1" value="Amoxicillin"> Amoxicillin<br><br>
+
+    <p><b>2. Which drug causes dry cough?</b></p>
+    <input type="radio" name="q2" value="Enalapril" required> Enalapril<br>
+    <input type="radio" name="q2" value="Losartan"> Losartan<br>
+    <input type="radio" name="q2" value="Amlodipine"> Amlodipine<br><br>
+
+    <p><b>3. Antidote for paracetamol poisoning?</b></p>
+    <input type="radio" name="q3" value="N-acetylcysteine" required> N-acetylcysteine<br>
+    <input type="radio" name="q3" value="Vitamin K"> Vitamin K<br>
+    <input type="radio" name="q3" value="Atropine"> Atropine<br><br>
+
+    <p><b>4. CYP3A4 inhibitor?</b></p>
+    <input type="radio" name="q4" value="Erythromycin" required> Erythromycin<br>
+    <input type="radio" name="q4" value="Rifampicin"> Rifampicin<br>
+    <input type="radio" name="q4" value="Phenytoin"> Phenytoin<br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="result"></p>
+</div>
+
+<script>
+const FORM_URL = "FORM_URL_HERE";
+
+document.getElementById("quizForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let score = 0;
+  if (document.querySelector('input[name="q1"]:checked').value === "Metronidazole") score++;
+  if (document.querySelector('input[name="q2"]:checked').value === "Enalapril") score++;
+  if (document.querySelector('input[name="q3"]:checked').value === "N-acetylcysteine") score++;
+  if (document.querySelector('input[name="q4"]:checked').value === "Erythromycin") score++;
+
+  let formData = new FormData();
+  formData.append("entry.NAME", document.querySelector('input[name="entry.NAME"]').value);
+  formData.append("entry.Q1", document.querySelector('input[name="q1"]:checked').value);
+  formData.append("entry.Q2", document.querySelector('input[name="q2"]:checked').value);
+  formData.append("entry.Q3", document.querySelector('input[name="q3"]:checked').value);
+  formData.append("entry.Q4", document.querySelector('input[name="q4"]:checked').value);
+  formData.append("entry.SCORE", score);
+
+  fetch(FORM_URL, { method: "POST", body: formData, mode: "no-cors" });
+
+  document.getElementById("result").innerHTML =
+    "✅ Submitted successfully!<br>Your Score: " + score + "/4";
+
+  document.getElementById("quizForm").reset();
+});
+</script>
+
+</body>
+</html>
