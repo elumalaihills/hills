@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Birthday Riddle ✨</title>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 420px;
+      margin: auto;
+      box-shadow: 0 0 25px rgba(255, 64, 129, 0.6);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 15px #ff4081; }
+      to { box-shadow: 0 0 30px #ff80ab; }
+    }
+
+    h2 {
+      color: #ff4081;
+      animation: sparkle 1.5s infinite;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    input {
+      padding: 10px;
+      width: 90%;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      padding: 12px 25px;
+      background: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: green;
+      animation: pop 0.5s ease-in-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h2>✨ Birthday Riddle ✨</h2>
+
+    <p>1️⃣ Enter your name</p>
+    <input type="text" id="q1" placeholder="Your name">
+
+    <p>2️⃣ Enter your roll number</p>
+    <input type="text" id="q2" placeholder="Roll number">
+
+    <p>3️⃣ Enter your favourite cricketer name</p>
+    <input type="text" id="q3" placeholder="Cricketer name">
+
+    <br><br>
+    <button onclick="checkAnswers()">🎁 Submit</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      var a1 = document.getElementById("q1").value.toLowerCase().trim();
+      var a2 = document.getElementById("q2").value.trim();
+      var a3 = document.getElementById("q3").value.toLowerCase().trim();
+
+      if (
+        a1 === "revathi" &&
+        a2 === "2261090003" &&
+        a3 === "rohit sharma"
+      ) {
+        document.getElementById("result").innerHTML =
+          "🎂🎉 MANY MORE HAPPY RETURNS OF THE DAY 🎉🎂";
+
+        // Confetti blast 🎉
+        confetti({
+          particleCount: 200,
+          spread: 100,
+          origin: { y: 0.6 }
+        });
+
+      } else {
+        document.getElementById("result").innerHTML =
+          "❌ Oops! Try again 😄";
+      }
+    }
+  </script>
+
+</body>
+</html>
