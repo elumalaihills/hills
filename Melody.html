@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎉</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0b0f2a;
+    font-family:system-ui, sans-serif;
+    color:white;
+}
+
+.box{
+    width:340px;
+    padding:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.08);
+    box-shadow:0 0 25px #ff4d6d;
+}
+
+h2{
+    text-align:center;
+    background:linear-gradient(90deg,#ffcc70,#ff4d6d,#c77dff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+    from{background-position:0%;}
+    to{background-position:200%;}
+}
+
+.q{
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    margin-top:6px;
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+}
+
+button{
+    width:100%;
+    margin-top:18px;
+    padding:10px;
+    border:none;
+    border-radius:25px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+}
+
+.msg{
+    margin-top:15px;
+    text-align:center;
+}
+
+.wish{
+    display:none;
+    margin-top:22px;
+    font-size:20px;
+    font-weight:bold;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>🎉 Birthday Riddles 🎉</h2>
+
+    <div class="q">
+        1. What is snap name?
+        <input id="a1">
+    </div>
+
+    <div class="q">
+        2. Enter the word for today special in V3 form
+        <input id="a2">
+    </div>
+
+    <div class="q">
+        3. A person who loves music is called as
+        <input id="a3">
+    </div>
+
+    <button onclick="verify()">Submit</button>
+
+    <div class="msg" id="msg"></div>
+
+    <div class="wish" id="wish">
+        ✨ Many more happy returns of the day Melody 🍰🎂❤️✨
+    </div>
+</div>
+
+<script>
+/* answers encoded so they NEVER appear directly */
+const key = [
+    atob("bWVsb2R5"),
+    atob("cHJvcG9zZWQ="),
+    atob("bWVsb3BoaWxl")
+];
+
+function verify(){
+    const u1 = a1.value.trim().toLowerCase();
+    const u2 = a2.value.trim().toLowerCase();
+    const u3 = a3.value.trim().toLowerCase();
+
+    if(u1===key[0] && u2===key[1] && u3===key[2]){
+        wish.style.display="block";
+        msg.innerText="";
+    }else{
+        wish.style.display="none";
+        msg.innerText="❌ Try again";
+    }
+}
+</script>
+
+</body>
+</html>
