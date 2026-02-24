@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#ff6a88,#ff99ac);
+    text-align:center;
+    overflow:hidden;
+}
+
+.container{
+    margin-top:30px;
+    color:white;
+}
+
+h1{
+    font-family:'Pacifico', cursive;
+    font-size:40px;
+    text-shadow:0 0 15px white;
+}
+
+input{
+    padding:12px;
+    width:260px;
+    border-radius:25px;
+    border:none;
+    margin:8px;
+    text-align:center;
+    font-size:15px;
+}
+
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#ff1493;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#result{
+    display:none;
+    margin-top:30px;
+    font-size:32px;
+    font-family:'Pacifico', cursive;
+    animation: zoomGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes zoomGlow{
+    from{
+        transform:scale(1);
+        text-shadow:0 0 10px white,0 0 20px #ff1493;
+    }
+    to{
+        transform:scale(1.1);
+        text-shadow:0 0 20px white,0 0 40px #ff1493;
+    }
+}
+
+/* Heart animation */
+.heart{
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
+/* Shake animation */
+.shake{
+    animation: shake 0.5s;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-10px);}
+    50%{transform:translateX(10px);}
+    75%{transform:translateX(-10px);}
+    100%{transform:translateX(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box">
+<h1>🎂 Birthday Special Quiz 🎂</h1>
+
+<p>1️⃣ What is your another name?</p>
+<input type="text" id="q1">
+
+<p>2️⃣ Name of the lab that you spoke with me for the first time?</p>
+<input type="text" id="q2">
+
+<p>3️⃣ Your cousin name?</p>
+<input type="text" id="q3">
+
+<p>4️⃣ Your favourite cricket player name?</p>
+<input type="text" id="q4">
+
+<p>5️⃣ How many years did you know me? (in number)</p>
+<input type="number" id="q5">
+
+<br><br>
+<button onclick="checkAnswers()">Submit 🎉</button>
+
+<div id="result">
+🎉 Many more happy returns of the day Haritha ☺️🎂❤️✨<br>
+May your dreams come true ✨
+</div>
+
+</div>
+
+<script>
+function checkAnswers(){
+
+let a1=document.getElementById("q1").value.toLowerCase().trim();
+let a2=document.getElementById("q2").value.toLowerCase().trim();
+let a3=document.getElementById("q3").value.toLowerCase().trim();
+let a4=document.getElementById("q4").value.toLowerCase().trim();
+let a5=document.getElementById("q5").value.trim();
+
+if(a1==="kowsalya" &&
+   a2==="pharmaceutics" &&
+   a3==="meena" &&
+   a4==="virat kohli" &&
+   a5==="3"){
+
+    document.getElementById("result").style.display="block";
+
+    // Heart rain
+    for(let i=0;i<40;i++){
+        let heart=document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(heart);
+    }
+
+}else{
+    let box=document.getElementById("box");
+    box.classList.add("shake");
+    setTimeout(()=>box.classList.remove("shake"),500);
+}
+}
+</script>
+
+</body>
+</html>
